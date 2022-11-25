@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "people",
+  "info": {
+    "singularName": "person",
+    "pluralName": "people",
+    "displayName": "Person",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "github_link": {
+      "type": "string"
+    },
+    "resume_link": {
+      "type": "string"
+    },
+    "about_me": {
+      "type": "text"
+    },
+    "footer_text": {
+      "type": "string"
+    },
+    "linkedIn_link": {
+      "type": "string"
+    },
+    "medium_link": {
+      "type": "string"
+    },
+    "image_link": {
+      "type": "string"
+    },
+    "is_dark": {
+      "type": "enumeration",
+      "enum": [
+        "True",
+        "False"
+      ]
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "educations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::education.education",
+      "mappedBy": "person"
+    },
+    "experiences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::experience.experience",
+      "mappedBy": "person"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "person"
+    }
+  }
+}
