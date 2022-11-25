@@ -5,6 +5,6 @@ class MobileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(offset: offset);
+    return Container();
   }
 }

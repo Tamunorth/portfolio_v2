@@ -6,7 +6,7 @@ class AppStrings {
   static const githubUrl = 'https://github.com/Tamunorth';
   static const githubReposUrl = 'https://github.com/Tamunorth?tab=repositories';
   static const resumeUrl =
-      'https://drive.google.com/file/d/1pYajtWF84hB1cCZctinTaDXJ6z3Bkf3y/view?usp=sharing';
+      'https://drive.google.com/file/d/1MPbqFOcT483U9p2DDbrvVw6lthykp-A9/view?usp=share_link';
   static const bottomScrollText =
       'Flutter - android - ios - Dart - Kotlin - Node - Firebase - ';
   static const lookingForward =

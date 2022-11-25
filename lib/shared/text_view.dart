@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextView extends StatelessWidget {
@@ -44,7 +45,7 @@ class TextView extends StatelessWidget {
                 color: color,
                 decoration: decoration,
                 fontWeight: weight,
-                fontSize: size,
+                fontSize: size.sp,
                 fontStyle: fontStyle,
                 height: lineHeight),
         textAlign: textAlign,
@@ -98,7 +99,7 @@ class TextViewAlt extends StatelessWidget {
               color: color,
               decoration: decoration,
               fontWeight: weight,
-              fontSize: size,
+              fontSize: size.sp,
               fontStyle: fontStyle,
               height: lineHeight,
             ) ??
