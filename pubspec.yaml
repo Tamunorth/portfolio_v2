@@ -46,6 +46,7 @@ dependencies:
   sizer: ^2.0.15
   scroll_loop_auto_scroll: 0.0.5
   provider: ^6.0.4
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:

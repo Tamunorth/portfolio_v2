@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio_v2/screens/dashboard.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
+  setPathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

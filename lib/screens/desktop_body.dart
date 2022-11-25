@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,7 +66,10 @@ class DesktopBody extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset(Assets.svgsLogo),
+                  SvgPicture.asset(
+                    Assets.svgsLogo,
+                    width: 85.w,
+                  ),
                   Row(
                     children: [
                       ButtonWidget(
@@ -78,7 +83,7 @@ class DesktopBody extends StatelessWidget {
                           );
                         },
                       ),
-                      80.horizontalSpace,
+                      80.w.horizontalSpace,
                       ButtonWidget(
                         title: 'GitHub',
                         isAlt: true,
@@ -86,7 +91,7 @@ class DesktopBody extends StatelessWidget {
                           launchUrlString(AppStrings.githubUrl);
                         },
                       ),
-                      80.horizontalSpace,
+                      80.w.horizontalSpace,
                       ButtonWidget(
                         title: 'Resume',
                         isAlt: true,
@@ -94,7 +99,7 @@ class DesktopBody extends StatelessWidget {
                           launchUrlString(AppStrings.resumeUrl);
                         },
                       ),
-                      80.horizontalSpace,
+                      80.w.horizontalSpace,
                       ButtonWidget(
                         title: 'About Me',
                         isAlt: true,
@@ -124,7 +129,7 @@ class DesktopBody extends StatelessWidget {
                         color: Colors.black,
                         weight: FontWeight.w600,
                       ),
-                      50.horizontalSpace,
+                      50.w.horizontalSpace,
                       Container(
                         margin: EdgeInsets.only(bottom: 16),
                         height: 95.w,
@@ -198,17 +203,41 @@ class DesktopBody extends StatelessWidget {
                 ],
               ),
               20.w.verticalSpace,
-              Row(
-                children: [
-                  ButtonWidget(
-                    title: 'Contact Me',
-                  ),
-                  30.horizontalSpace,
-                  ButtonWidget(
-                    title: 'Github',
-                  ),
-                ],
-              ),
+              MediaQuery.of(context).size.width <= 650
+                  ? Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ButtonWidget(
+                              title: 'Contact Me',
+                              onTap: () {},
+                            ),
+                            30.w.verticalSpace,
+                            ButtonWidget(
+                              title: 'Github',
+                              onTap: () {
+                                launchUrlString(AppStrings.githubUrl);
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        ButtonWidget(
+                          title: 'Contact Me',
+                        ),
+                        30.w.horizontalSpace,
+                        ButtonWidget(
+                          title: 'Github',
+                          onTap: () {
+                            launchUrlString(AppStrings.githubUrl);
+                          },
+                        ),
+                      ],
+                    ),
               150.w.verticalSpace,
               Divider(),
               10.w.verticalSpace,
@@ -305,7 +334,7 @@ class DesktopBody extends StatelessWidget {
                       weight: FontWeight.w400,
                     ),
                   ),
-                  50.horizontalSpace,
+                  50.w.horizontalSpace,
                   Expanded(
                     child: Container(
                       width: 200,
@@ -333,13 +362,13 @@ class DesktopBody extends StatelessWidget {
                   labelStyle: TextStyle(
                     fontFamily: GoogleFonts.openSans().fontFamily,
                     color: Colors.black,
-                    fontSize: 32,
+                    fontSize: 32.sp,
                     fontWeight: FontWeight.w600,
                   ),
                   unselectedLabelStyle: TextStyle(
                     fontFamily: GoogleFonts.openSans().fontFamily,
                     color: Colors.black,
-                    fontSize: 30,
+                    fontSize: 30.sp,
                     fontWeight: FontWeight.w600,
                   ),
                   tabs: const [
@@ -454,52 +483,57 @@ class ButtonWidget extends StatelessWidget {
       onExit: (event) {
         onHover.value = false;
       },
-      child: ValueListenableBuilder(
-          valueListenable: onHover,
-          builder: (context, value, child) {
-            return isAlt
-                ? Container(
-                    // height: 30,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: TextView(
-                      onTap: onTap,
-                      text: title,
-                      size: 18,
-                      color: value == true ? Pallets.yellow : null,
-                      weight: FontWeight.w600,
-                    ),
-                  )
-                : GestureDetector(
-                    onTap: onTap,
-                    child: Container(
-                      // height: 50,
-                      width: 250,
-                      padding: EdgeInsets.symmetric(vertical: 14),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            title == 'Github'
-                                ? Icons.card_giftcard
-                                : Icons.email,
-                          ),
-                          10.horizontalSpace,
-                          TextView(
-                            text: title,
-                            size: 24,
-                          )
-                        ],
+      child: GestureDetector(
+        onTap: onTap,
+        child: ValueListenableBuilder(
+            valueListenable: onHover,
+            builder: (context, value, child) {
+              return isAlt
+                  ? InkWell(
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      child: Container(
+                        // height: 30,
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        child: TextView(
+                          text: title,
+                          size: 18,
+                          color: value == true ? Pallets.yellow : null,
+                          weight: FontWeight.w600,
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        color: value == true ? Color(0xffFFC163) : null,
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(50),
+                    )
+                  : InkWell(
+                      child: Container(
+                        // height: 50,
+                        width: 250,
+                        padding: EdgeInsets.symmetric(vertical: 14.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              title == 'Github'
+                                  ? Icons.card_giftcard
+                                  : Icons.email,
+                            ),
+                            10.w.horizontalSpace,
+                            TextView(
+                              text: title,
+                              size: 24,
+                            )
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                          color: value == true ? Color(0xffFFC163) : null,
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
-                    ),
-                  );
-          }),
+                    );
+            }),
+      ),
     );
   }
 }
