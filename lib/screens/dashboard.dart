@@ -7,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/app_strings.dart';
 import 'desktop_body.dart';
-import 'mobile_body.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
-        mobile: MobileBody(), desktop: AnimatedCursor(child: DesktopBody()));
+        mobile: DesktopBody(), desktop: AnimatedCursor(child: DesktopBody()));
   }
 }
 

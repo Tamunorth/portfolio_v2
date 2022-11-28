@@ -5,6 +5,7 @@ class Assets {
   static const String assetsClashDisplayBold = 'assets/ClashDisplay-Bold.otf';
   static const String assetsClashDisplayVariable =
       'assets/ClashDisplay-Variable.ttf';
+  static const String pngsMemoji = 'assets/pngs/memoji.png';
   static const String pngsTamunorthLogo = 'assets/pngs/tamunorth_logo.png';
   static const String svgsLogo = 'assets/svgs/logo.svg';
   static const String svgsMobileDev = 'assets/svgs/mobile_dev.svg';
