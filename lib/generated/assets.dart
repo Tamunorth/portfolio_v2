@@ -7,6 +7,8 @@ class Assets {
       'assets/ClashDisplay-Variable.ttf';
   static const String pngsMemoji = 'assets/pngs/memoji.png';
   static const String pngsTamunorthLogo = 'assets/pngs/tamunorth_logo.png';
+  static const String svgsContactMe = 'assets/svgs/contact_me.svg';
+  static const String svgsGitHub = 'assets/svgs/gitHub.svg';
   static const String svgsLogo = 'assets/svgs/logo.svg';
   static const String svgsMobileDev = 'assets/svgs/mobile_dev.svg';
   static const String svgsYellowAsset = 'assets/svgs/yellow_asset.svg';

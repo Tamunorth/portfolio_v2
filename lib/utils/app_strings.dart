@@ -17,7 +17,7 @@ class AppStrings {
   // static const lookingForward =
   //     'Looking forward to building \n great projects with you.';
   static const aboutMe =
-      "Hello, my name is Tamunotonye. I'm a mobile developer with over 3 years' experience using Flutter, I have made use of a verity of state management solutions with flutter like, Provider, Riverpod, and BloC, I've worked with firebase and custom backends for various projects. Catch me outside from work you will find me gaming, at the gym working out or adventuring.";
+      "I'm a  mobile developer that's passionate about building seamless and inclusive mobile app experiences for users by writing efficient, secure, reusable code with Forensic attention to detail, I’m keen on developing beautiful and intuitive applications, that are reliable and perform consistently.";
   static const description =
-      'Hi, I’m Tamunotonye a seasoned Mobile Developer with hands-on experience in developing applications that are highly functional, robust and scalable. ';
+      "I am a Mobile developer adept at developing applications that positively affect peoples lives and are highly functional, robust and scalable, having understanding of business and an ability to develop innovative  technical solutions to business problems.";
 }

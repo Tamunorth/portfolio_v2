@@ -11,7 +11,9 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:portfolio_v2/generated/assets.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:portfolio_v2/utils/pallets.dart';
+import 'package:portfolio_v2/utils/validation_helpers.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../shared/image_widget.dart';
@@ -22,30 +24,30 @@ class DesktopBody extends StatelessWidget {
   DesktopBody({Key? key}) : super(key: key);
 
   static final List<String> skills = [
-    '     Flutter   ',
-    '         Dart',
-    '         Caching',
-    '         RESTful APIs',
-    '         Debugging',
-    '         Unit and Widget',
-    '         testing',
-    '         Responsive UI',
-    '         BloC',
-    '         Provider',
-    '         Riverpod',
+    ' Flutter',
+    ' Dart',
+    ' Kotlin',
+    ' Swift',
+    ' Java',
+    ' C++',
+    ' Firebase',
+    ' Fastlane',
+    ' BloC Pattern',
+    ' Provider',
+    ' Riverpod',
   ];
   static final List<String> skills2 = [
-    '         SQLite',
-    '         JSON',
-    '         GraphQL',
-    '         Object Oriented',
-    '         programming',
-    '         Firebase',
-    '         Git/Version control',
-    '         C++',
-    '         SOLID development',
-    '         Test-Driven',
-    '         Development (TDD)',
+    'Domain - driven design(DDD)',
+    '  CI/CD',
+    ' REST Api’s',
+    '  JSON ',
+    '  GraphQL',
+    '  Git (Version control)',
+    '  Agile Development (Scrum)',
+    '  Object Oriented programming (OOP)',
+    '  XCode',
+    '  Android Studio',
+    '  Content Management Systems',
     '     HTML/CSS /JavaScript',
     '     Node',
     '     Kotlin',
@@ -212,41 +214,71 @@ class DesktopBody extends StatelessWidget {
                   ],
                 ),
                 20.w.verticalSpace,
-                MediaQuery.of(context).size.width <= 650
-                    ? Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ButtonWidget(
-                                title: 'Contact Me',
-                                onTap: () {},
-                              ),
-                              30.w.verticalSpace,
-                              ButtonWidget(
-                                title: 'Github',
-                                onTap: () {
-                                  launchUrlString(AppStrings.githubUrl);
-                                },
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    : Row(
-                        children: [
-                          ButtonWidget(
-                            title: 'Contact Me',
-                          ),
-                          30.w.horizontalSpace,
-                          ButtonWidget(
-                            title: 'Github',
-                            onTap: () {
-                              launchUrlString(AppStrings.githubUrl);
-                            },
-                          ),
-                        ],
-                      ),
+                // MediaQuery.of(context).size.width <= 650
+                //     ? Row(
+                //         children: [
+                //           Column(
+                //             crossAxisAlignment: CrossAxisAlignment.start,
+                //             children: [
+                //               ButtonWidget(
+                //                 title: 'Contact Me',
+                //                 onTap: () async {
+                //                   String email = Uri.encodeComponent(
+                //                       'daviesmanueltamunotonye@gmail.com');
+                //                   String subject =
+                //                       Uri.encodeComponent("From Website");
+                //                   String body = Uri.encodeComponent(
+                //                       messageCtrl.text.trim());
+                //                   // print(subject); //output: Hello%20Flutter
+                //                   Uri mail = Uri.parse(
+                //                       "mailto:$email?subject=$subject");
+                //                   if (await launchUrl(mail)) {
+                //                     //email app opened
+                //                   } else {
+                //                     //email app is not opened
+                //                   }
+                //                 },
+                //               ),
+                //               30.w.verticalSpace,
+                //               ButtonWidget(
+                //                 title: 'Github',
+                //                 onTap: () {
+                //                   launchUrlString(AppStrings.githubUrl);
+                //                 },
+                //               ),
+                //             ],
+                //           ),
+                //         ],
+                //       )
+                //     :
+                Row(
+                  children: [
+                    ButtonWidget(
+                      title: 'Contact Me',
+                      onTap: () async {
+                        String email = Uri.encodeComponent(
+                            'daviesmanueltamunotonye@gmail.com');
+                        String subject = Uri.encodeComponent("From Website");
+                        String body =
+                            Uri.encodeComponent(messageCtrl.text.trim());
+                        // print(subject); //output: Hello%20Flutter
+                        Uri mail = Uri.parse("mailto:$email?subject=$subject");
+                        if (await launchUrl(mail)) {
+                          //email app opened
+                        } else {
+                          //email app is not opened
+                        }
+                      },
+                    ),
+                    30.w.horizontalSpace,
+                    ButtonWidget(
+                      title: 'Github',
+                      onTap: () {
+                        launchUrlString(AppStrings.githubUrl);
+                      },
+                    ),
+                  ],
+                ),
                 150.w.verticalSpace,
                 Divider(),
                 10.w.verticalSpace,
@@ -350,7 +382,14 @@ class DesktopBody extends StatelessWidget {
                         height: 450.w,
                         decoration: BoxDecoration(
                           color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: ImageWidget(
+                          imageUrl:
+                              'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669623989/portfolio_projects/tamunor_cu5smt.png',
+                          fit: BoxFit.cover,
+                          imageType: ImageWidgetType.network,
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       ),
                     )
@@ -360,8 +399,8 @@ class DesktopBody extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TabBar(
-                      labelPadding: const EdgeInsets.symmetric(horizontal: 5),
-                      indicatorColor: Colors.black,
+                      labelPadding: const EdgeInsets.symmetric(horizontal: 10),
+                      indicatorColor: Pallets.blueAccent,
                       labelColor: Colors.black,
                       isScrollable: true,
                       indicatorSize: TabBarIndicatorSize.label,
@@ -431,8 +470,70 @@ class DesktopBody extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(),
-                    Container(),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title:
+                                '4traderX Inc. | Mobile Application Developer:',
+                            date:
+                                'Part-Time Nov 2021 - Present; (Delaware, United States of America) ',
+                          ),
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title: 'Titanxchange Corp. | Lead Mobile Engineer',
+                            date:
+                                'Part-Time July 2022 - Present; (Toronto,  Canada)',
+                          ),
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title:
+                                'DFC Technology Hub (DTH) | Lead Mobile Developer',
+                            date:
+                                'Jan 2021 - July 2022 / Hybrid (Abuja, Nigeria)',
+                          ),
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title: 'MyNeighbours Kitchen | Mobile Developer',
+                            date:
+                                'April 2020 - November 2020 / (Remote, Contract)',
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title:
+                                'THE COMPLETE 2021 FLUTTER DEVELOPMENT BOOTCAMP WITH DART',
+                            date: ' BY LONDONAPPBREWERY UDEMY (2019)',
+                          ),
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title:
+                                'SOFTWARE ARCHITECTURE: PATTERNS FOR DEVELOPERS',
+                            date: 'LINKEDIN (2022)',
+                          ),
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title: 'BS.c MECHANICAL ENGINEERING',
+                            date: 'LANDMARK UNIVERSITY (2015 - 2020)',
+                          ),
+                          60.w.verticalSpace,
+                          ExperienceTile(
+                            title:
+                                'Flutter Advanced Course - Clean Architecture With MVVM'
+                                    .toUpperCase(),
+                            date: 'BY MINA FARID LINKEDIN(2021)',
+                          ),
+                        ],
+                      ),
+                    ),
                   ]),
                 ),
                 80.w.verticalSpace,
@@ -471,15 +572,19 @@ class DesktopBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: ImageWidget(
-                          imageUrl: Assets.pngsMemoji,
-                          // height: 400,
-                          fit: BoxFit.fitHeight,
-                          size: 400.w,
-                        ),
-                      ),
-                      80.horizontalSpace,
+                      MediaQuery.of(context).size.width <= 500
+                          ? const SizedBox()
+                          : Expanded(
+                              child: ImageWidget(
+                                imageUrl: Assets.pngsMemoji,
+                                // height: 400,
+                                fit: BoxFit.fitHeight,
+                                size: 400.w,
+                              ),
+                            ),
+                      MediaQuery.of(context).size.width <= 500
+                          ? const SizedBox()
+                          : 80.horizontalSpace,
                       Expanded(
                         child: Form(
                           key: formKey,
@@ -490,21 +595,24 @@ class DesktopBody extends StatelessWidget {
                               TextBox(
                                 hint: 'Name',
                                 ctrl: nameCtrl,
+                                validator: FieldValidators.notEmptyValidator,
                               ),
                               20.verticalSpace,
                               TextBox(
                                 hint: 'Email',
                                 ctrl: emailCtrl,
+                                validator: FieldValidators.emailValidator,
                               ),
                               20.verticalSpace,
                               TextBox(
                                 hint: 'Your Message',
                                 maxLines: 10,
                                 ctrl: messageCtrl,
+                                validator: FieldValidators.notEmptyValidator,
                               ),
                               30.verticalSpace,
                               SmallButton(
-                                title: 'Send Message',
+                                title: 'Send a Message',
                                 onTap: () async {
                                   if (formKey.currentState!.validate()) {
                                     Map<String, dynamic> templateParams = {
@@ -570,21 +678,6 @@ class DesktopBody extends StatelessWidget {
                                       context.loaderOverlay.hide();
                                     }
                                   }
-
-                                  // String email =
-                                  //     Uri.encodeComponent(emailCtrl.text.trim());
-                                  // String subject = Uri.encodeComponent(
-                                  //     "${nameCtrl.text.trim()} From Website");
-                                  // String body =
-                                  //     Uri.encodeComponent(messageCtrl.text.trim());
-                                  // print(subject); //output: Hello%20Flutter
-                                  // Uri mail = Uri.parse(
-                                  //     "mailto:$email?subject=$subject&body=$body");
-                                  // if (await launchUrl(mail)) {
-                                  //   //email app opened
-                                  // } else {
-                                  //   //email app is not opened
-                                  // }
                                 },
                               ),
                             ],
@@ -669,15 +762,48 @@ class DesktopBody extends StatelessWidget {
   }
 }
 
+class ExperienceTile extends StatelessWidget {
+  const ExperienceTile({
+    Key? key,
+    required this.title,
+    required this.date,
+  }) : super(key: key);
+
+  final String title;
+  final String date;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: title,
+          size: 32,
+          weight: FontWeight.w600,
+        ),
+        13.verticalSpace,
+        TextView(
+          text: date,
+          size: 32,
+          weight: FontWeight.w400,
+        ),
+      ],
+    );
+  }
+}
+
 class TextBox extends StatelessWidget {
   const TextBox({
     Key? key,
     this.maxLines = 1,
     required this.hint,
     required this.ctrl,
+    this.validator,
   }) : super(key: key);
   final int maxLines;
   final String hint;
+  final String? Function(String?)? validator;
   final TextEditingController ctrl;
 
   @override
@@ -690,11 +816,7 @@ class TextBox extends StatelessWidget {
         fontWeight: FontWeight.w300,
       ),
       scrollPadding: EdgeInsets.symmetric(horizontal: 10),
-      validator: (value) {
-        if (value?.isEmpty ?? false) {
-          return 'Please complete this field';
-        }
-      },
+      validator: validator,
       decoration: InputDecoration(
         // isCollapsed: true,
         isDense: true,
@@ -759,22 +881,25 @@ class ButtonWidget extends StatelessWidget {
                   : InkWell(
                       child: Container(
                         // height: 50,
-                        width: 250,
+                        width: 250.w,
                         padding: EdgeInsets.symmetric(vertical: 14.w),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              title == 'Github'
-                                  ? Icons.card_giftcard
-                                  : Icons.email,
-                            ),
-                            10.w.horizontalSpace,
-                            TextView(
-                              text: title,
-                              size: 24,
+                            title == 'Github'
+                                ? SvgPicture.asset(Assets.svgsGitHub,
+                                    width: 26.sp)
+                                : SvgPicture.asset(
+                                    Assets.svgsContactMe,
+                                    width: 26.sp,
+                                  ),
+                            20.w.horizontalSpace,
+                            Text(
+                              title,
+                              style: TextStyle(
+                                  fontSize: 26.sp, fontWeight: FontWeight.w500),
                             )
                           ],
                         ),
@@ -835,7 +960,7 @@ class SmallButton extends StatelessWidget {
                         child: Center(
                           child: TextView(
                             text: title,
-                            size: 14,
+                            size: 16,
                             color: value == true ? Colors.black : null,
                             weight: FontWeight.w600,
                           ),
@@ -856,7 +981,7 @@ class SmallButton extends StatelessWidget {
                         child: Center(
                           child: TextView(
                             text: title,
-                            size: 14,
+                            size: 24,
                             color: value == true ? Colors.black : Colors.white,
                           ),
                         ),
