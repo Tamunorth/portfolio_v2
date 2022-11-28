@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:in_app_notification/in_app_notification.dart';
 import 'package:portfolio_v2/screens/dashboard.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -19,12 +20,14 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(1440, 877),
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Tamunnorth Portfolio',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+        return InAppNotification(
+          child: MaterialApp(
+            title: 'Tamunnorth Portfolio',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const DashboardScreen(),
           ),
-          home: const DashboardScreen(),
         );
       },
     );
