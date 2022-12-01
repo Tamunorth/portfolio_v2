@@ -1,6 +1,6 @@
 # portfolio_v2
 
-A new Flutter project.
+Tamunorth's Portfolio website built with flutter
 
 ## Getting Started
 
