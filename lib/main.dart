@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return InAppNotification(
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Tamunnorth Portfolio',
             theme: ThemeData(
               primarySwatch: Colors.blue,

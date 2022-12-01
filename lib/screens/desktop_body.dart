@@ -202,7 +202,8 @@ class DesktopBody extends StatelessWidget {
                       child: SizedBox(
                           height: 160.w,
                           child: InfiniteAnimation(
-                            durationInSeconds: 10, // this is the default value
+                            durationInSeconds: 10,
+                            // this is the default value
                             child: SvgPicture.asset(
                               Assets.svgsMobileDev,
                               // height: 120,
@@ -399,9 +400,12 @@ class DesktopBody extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TabBar(
-                      labelPadding: const EdgeInsets.symmetric(horizontal: 10),
+                      labelPadding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
                       indicatorColor: Pallets.blueAccent,
                       labelColor: Colors.black,
+                      splashBorderRadius: BorderRadius.zero,
                       isScrollable: true,
                       indicatorSize: TabBarIndicatorSize.label,
                       unselectedLabelColor: Colors.black,
@@ -732,7 +736,8 @@ class DesktopBody extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        launchUrlString('https://www.felicitylois.com/');
+                        final site = Uri.parse('https://www.felicitylois.com');
+                        launchUrl(site);
                       },
                       child: Row(
                         children: [

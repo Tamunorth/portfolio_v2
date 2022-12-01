@@ -51,6 +51,9 @@ dependencies:
   loader_overlay: ^2.1.0
   in_app_notification: ^1.1.2
   another_flushbar: ^1.12.29
+  zoom_widget: ^2.0.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +65,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.2.16
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/pngs/tamunorth_logo.png
+  web: true
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
