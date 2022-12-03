@@ -71,7 +71,7 @@ class DesktopBody extends StatelessWidget {
           // alignPanAxis: true,
           // panEnabled: false,
           scaleEnabled: MediaQuery.of(context).size.width <= 650 ? true : false,
-          boundaryMargin: EdgeInsets.all(100),
+          boundaryMargin: const EdgeInsets.all(0),
           child: LoaderOverlay(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(
