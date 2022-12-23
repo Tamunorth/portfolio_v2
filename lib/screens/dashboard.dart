@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio_v2/screens/mobile_body.dart';
 import 'package:portfolio_v2/shared/animated_cusor_position.dart';
 import 'package:portfolio_v2/shared/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,7 +15,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
-        mobile: DesktopBody(), desktop: AnimatedCursor(child: DesktopBody()));
+        mobile: MobileBody(), desktop: AnimatedCursor(child: DesktopBody()));
   }
 }
 

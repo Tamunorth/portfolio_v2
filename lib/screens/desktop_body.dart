@@ -41,16 +41,16 @@ class DesktopBody extends StatelessWidget {
     '  CI/CD',
     ' REST Api’s',
     '  JSON ',
-    '  GraphQL',
-    '  Git (Version control)',
-    '  Agile Development (Scrum)',
-    '  Object Oriented programming (OOP)',
-    '  XCode',
-    '  Android Studio',
-    '  Content Management Systems',
-    '     HTML/CSS /JavaScript',
-    '     Node',
-    '     Kotlin',
+    'GraphQL',
+    'Git (Version control)',
+    'Agile Development (Scrum)',
+    'Object Oriented programming (OOP)',
+    'XCode',
+    'Android Studio',
+    'Content Management Systems',
+    'HTML/CSS /JavaScript',
+    'Node',
+    'Kotlin',
   ];
 
   final projectsKey = new GlobalKey();
@@ -474,7 +474,7 @@ class DesktopBody extends StatelessWidget {
                               child: ListView.builder(
                                 itemBuilder: (context, index) {
                                   return TextView(
-                                    text: skills[index].replaceAll(' ', ''),
+                                    text: skills[index].trim(),
                                     size: 32,
                                     weight: FontWeight.w400,
                                   );
@@ -486,7 +486,7 @@ class DesktopBody extends StatelessWidget {
                               child: ListView.builder(
                                 itemBuilder: (context, index) {
                                   return TextView(
-                                    text: skills2[index].replaceAll(' ', ''),
+                                    text: skills2[index].trim(),
                                     size: 32,
                                     weight: FontWeight.w400,
                                   );
