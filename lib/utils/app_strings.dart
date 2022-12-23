@@ -19,5 +19,5 @@ class AppStrings {
   static const aboutMe =
       "I'm a  mobile developer that's passionate about building seamless and inclusive mobile app experiences for users by writing efficient, secure, reusable code with Forensic attention to detail, I’m keen on developing beautiful and intuitive applications, that are reliable and perform consistently.";
   static const description =
-      "I am a Mobile developer adept at developing applications that positively affect peoples lives and are highly functional, robust and scalable, having understanding of business and an ability to develop innovative  technical solutions to business problems.";
+      'I am a Mobile Developer adept at solving practical problems with robust technical solutions that positively affect lives.';
 }
