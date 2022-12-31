@@ -13,6 +13,14 @@ class AppStrings {
       'Flutter - android - ios - Dart - Kotlin - Node - Firebase - ';
   static const lookingForward =
       'LOOKING FORWARD -TO BUILDING - GREAT PROJECTS - WITH YOU ';
+  static const tradexImageLink =
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269273/portfolio_projects/Frame_42_1_dnyh8n.png';
+  static const titanXchangeImageLink =
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669061368/portfolio_projects/Frame_41_zlz3cn.png';
+  static const edokoImageLink =
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269235/portfolio_projects/Frame_33_g7wi32.png';
+  static const medburyImageLink =
+      'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269274/portfolio_projects/Frame_40_mxkjw8.png';
 
   // static const lookingForward =
   //     'Looking forward to building \n great projects with you.';
