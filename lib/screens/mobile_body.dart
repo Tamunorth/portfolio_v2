@@ -12,7 +12,6 @@ import 'package:portfolio_v2/generated/assets.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:portfolio_v2/utils/pallets.dart';
 import 'package:portfolio_v2/utils/validation_helpers.dart';
-import 'package:reveal_on_scroll/reveal_on_scroll.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -385,14 +384,14 @@ class MobileBody extends StatelessWidget {
                   //
                   // ),
 
-                  Visibility(
-                    visible: _isInViewport,
-                    child: AnimatedOpacity(
-                      duration: Duration(milliseconds: 500),
-                      opacity: _isInViewport ? 1.0 : 0.0,
-                      child: Text('Hello World'),
-                    ),
-                  ),
+                  // Visibility(
+                  //   visible: _isInViewport,
+                  //   child: AnimatedOpacity(
+                  //     duration: Duration(milliseconds: 500),
+                  //     opacity: _isInViewport ? 1.0 : 0.0,
+                  //     child: Text('Hello World'),
+                  //   ),
+                  // ),
                   const ProjectItem(
                     title: 'Titan Xchange',
                     description:
@@ -404,54 +403,87 @@ class MobileBody extends StatelessWidget {
                     appStoreLink:
                         'https://apps.apple.com/us/app/titanxchange/id6444230222',
                   ),
-                  ScrollToReveal.withAnimation(
-                    label: 'ScrollEdoko',
-                    scrollController: _scrollController,
-                    reflectPosition: -200,
-                    animationType: AnimationType.findInLeft,
-                    child: const ProjectItem(
-                      title: 'Edoko',
-                      description:
-                          "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
-                      imageLink: AppStrings.edokoImageLink,
-                      overlayColor: 0xff222222,
-                      playStoreLink:
-                          'https://play.google.com/store/apps/details?id=com.edako.edako',
-                      appStoreLink:
-                          'https://apps.apple.com/ca/app/edoko/id1600923527',
-                    ),
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'ScrollEdoko',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -200,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child: const ProjectItem(
+                  //     title: 'Edoko',
+                  //     description:
+                  //         "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
+                  //     imageLink: AppStrings.edokoImageLink,
+                  //     overlayColor: 0xff222222,
+                  //     playStoreLink:
+                  //         'https://play.google.com/store/apps/details?id=com.edako.edako',
+                  //     appStoreLink:
+                  //         'https://apps.apple.com/ca/app/edoko/id1600923527',
+                  //   ),
+                  // ),
+
+                  const ProjectItem(
+                    title: '4traderx',
+                    description:
+                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
+                    imageLink: AppStrings.tradexImageLink,
+                    overlayColor: 0xff371C00,
+                    playStoreLink:
+                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
+                    appStoreLink:
+                        'https://apps.apple.com/us/app/4traderx/id1605193631',
                   ),
-                  ScrollToReveal.withAnimation(
-                    label: 'ScrollMedbury',
-                    scrollController: _scrollController,
-                    reflectPosition: -200,
-                    animationType: AnimationType.findInLeft,
-                    child: const ProjectItem(
-                      title: 'Medbury',
-                      description:
-                          'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
-                      imageLink: AppStrings.medburyImageLink,
-                      overlayColor: 0xff420001,
-                      playStoreLink: 'https://bit.ly/medbury_playstore',
-                      appStoreLink: 'https://apple.co/3uYrHyh',
-                    ),
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'ScrollMedbury',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -200,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child: const ProjectItem(
+                  //     title: 'Medbury',
+                  //     description:
+                  //         'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
+                  //     imageLink: AppStrings.medburyImageLink,
+                  //     overlayColor: 0xff420001,
+                  //     playStoreLink: 'https://bit.ly/medbury_playstore',
+                  //     appStoreLink: 'https://apple.co/3uYrHyh',
+                  //   ),
+                  // ),
+                  const ProjectItem(
+                    title: 'Medbury',
+                    description:
+                        'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
+                    imageLink: AppStrings.medburyImageLink,
+                    overlayColor: 0xff420001,
+                    playStoreLink: 'https://bit.ly/medbury_playstore',
+                    appStoreLink: 'https://apple.co/3uYrHyh',
                   ),
-                  ScrollToReveal.withAnimation(
-                    label: 'Scroll4traderX',
-                    scrollController: _scrollController,
-                    reflectPosition: -200,
-                    animationType: AnimationType.findInLeft,
-                    child: const ProjectItem(
-                      title: '4traderx',
-                      description:
-                          '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                      imageLink: AppStrings.tradexImageLink,
-                      overlayColor: 0xff371C00,
-                      playStoreLink:
-                          'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
-                      appStoreLink:
-                          'https://apps.apple.com/us/app/4traderx/id1605193631',
-                    ),
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'Scroll4traderX',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -200,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child: const ProjectItem(
+                  //     title: '4traderx',
+                  //     description:
+                  //         '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
+                  //     imageLink: AppStrings.tradexImageLink,
+                  //     overlayColor: 0xff371C00,
+                  //     playStoreLink:
+                  //         'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
+                  //     appStoreLink:
+                  //         'https://apps.apple.com/us/app/4traderx/id1605193631',
+                  //   ),
+                  // ),
+
+                  const ProjectItem(
+                    title: '4traderx',
+                    description:
+                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
+                    imageLink: AppStrings.tradexImageLink,
+                    overlayColor: 0xff371C00,
+                    playStoreLink:
+                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
+                    appStoreLink:
+                        'https://apps.apple.com/us/app/4traderx/id1605193631',
                   ),
 
                   30.verticalSpace,
