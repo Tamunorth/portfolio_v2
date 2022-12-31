@@ -63,6 +63,8 @@ class MobileBody extends StatelessWidget {
   final TextEditingController messageCtrl = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
+  bool _isInViewport = false;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -122,6 +124,7 @@ class MobileBody extends StatelessWidget {
           boundaryMargin: const EdgeInsets.all(0),
           child: LoaderOverlay(
             child: SingleChildScrollView(
+              controller: _scrollController,
               padding: EdgeInsets.symmetric(
                 vertical: 60,
                 horizontal: 24,
@@ -364,47 +367,118 @@ class MobileBody extends StatelessWidget {
                   ),
 
                   10.verticalSpace,
+                  //
+                  //
+                  //     ListView(
+                  // controller: ,
+                  //     ),
 
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'ScrollTitanX',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -100,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child:
+                  //
+                  //
+                  //
+                  // ),
+
+                  // Visibility(
+                  //   visible: _isInViewport,
+                  //   child: AnimatedOpacity(
+                  //     duration: Duration(milliseconds: 500),
+                  //     opacity: _isInViewport ? 1.0 : 0.0,
+                  //     child: Text('Hello World'),
+                  //   ),
+                  // ),
                   const ProjectItem(
-                    title: 'Titan xchange',
+                    title: 'Titan Xchange',
                     description:
                         'TitanXchange provides Seamless borderless payments at your Fingertips allowing you to transcend Borders, by eliminating long bank hours, costly service fees and lengthy processing times.',
-                    imageLink:
-                        'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669061368/portfolio_projects/Frame_41_zlz3cn.png',
+                    imageLink: AppStrings.titanXchangeImageLink,
                     overlayColor: 0xff00312A,
                     playStoreLink:
                         'https://play.google.com/store/apps/details?id=com.titanx_change.www',
                     appStoreLink:
                         'https://apps.apple.com/us/app/titanxchange/id6444230222',
                   ),
-                  const ProjectItem(
-                    title: 'Edoko',
-                    description:
-                        "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
-                    imageLink:
-                        'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269273/portfolio_projects/Frame_42_1_dnyh8n.png',
-                    overlayColor: 0xff222222,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.edako.edako',
-                    appStoreLink:
-                        'https://apps.apple.com/ca/app/edoko/id1600923527',
-                  ),
-                  const ProjectItem(
-                    title: 'Medbury',
-                    description:
-                        'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
-                    imageLink:
-                        'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269235/portfolio_projects/Frame_33_g7wi32.png',
-                    overlayColor: 0xff420001,
-                    playStoreLink: 'https://bit.ly/medbury_playstore',
-                    appStoreLink: 'https://apple.co/3uYrHyh',
-                  ),
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'ScrollEdoko',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -200,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child: const ProjectItem(
+                  //     title: 'Edoko',
+                  //     description:
+                  //         "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
+                  //     imageLink: AppStrings.edokoImageLink,
+                  //     overlayColor: 0xff222222,
+                  //     playStoreLink:
+                  //         'https://play.google.com/store/apps/details?id=com.edako.edako',
+                  //     appStoreLink:
+                  //         'https://apps.apple.com/ca/app/edoko/id1600923527',
+                  //   ),
+                  // ),
+
                   const ProjectItem(
                     title: '4traderx',
                     description:
                         '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                    imageLink:
-                        'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269274/portfolio_projects/Frame_40_mxkjw8.png',
+                    imageLink: AppStrings.tradexImageLink,
+                    overlayColor: 0xff371C00,
+                    playStoreLink:
+                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
+                    appStoreLink:
+                        'https://apps.apple.com/us/app/4traderx/id1605193631',
+                  ),
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'ScrollMedbury',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -200,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child: const ProjectItem(
+                  //     title: 'Medbury',
+                  //     description:
+                  //         'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
+                  //     imageLink: AppStrings.medburyImageLink,
+                  //     overlayColor: 0xff420001,
+                  //     playStoreLink: 'https://bit.ly/medbury_playstore',
+                  //     appStoreLink: 'https://apple.co/3uYrHyh',
+                  //   ),
+                  // ),
+                  const ProjectItem(
+                    title: 'Medbury',
+                    description:
+                        'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
+                    imageLink: AppStrings.medburyImageLink,
+                    overlayColor: 0xff420001,
+                    playStoreLink: 'https://bit.ly/medbury_playstore',
+                    appStoreLink: 'https://apple.co/3uYrHyh',
+                  ),
+                  // ScrollToReveal.withAnimation(
+                  //   label: 'Scroll4traderX',
+                  //   scrollController: _scrollController,
+                  //   reflectPosition: -200,
+                  //   animationType: AnimationType.findInLeft,
+                  //   child: const ProjectItem(
+                  //     title: '4traderx',
+                  //     description:
+                  //         '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
+                  //     imageLink: AppStrings.tradexImageLink,
+                  //     overlayColor: 0xff371C00,
+                  //     playStoreLink:
+                  //         'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
+                  //     appStoreLink:
+                  //         'https://apps.apple.com/us/app/4traderx/id1605193631',
+                  //   ),
+                  // ),
+
+                  const ProjectItem(
+                    title: '4traderx',
+                    description:
+                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
+                    imageLink: AppStrings.tradexImageLink,
                     overlayColor: 0xff371C00,
                     playStoreLink:
                         'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
@@ -993,7 +1067,7 @@ class MButtonWidget extends StatelessWidget {
                             Text(
                               title,
                               style: TextStyle(
-                                  fontSize: 8, fontWeight: FontWeight.w500),
+                                  fontSize: 10, fontWeight: FontWeight.w500),
                             )
                           ],
                         ),
@@ -1029,16 +1103,16 @@ class MOverlayButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onHover: (event) {
-        onHover.value = true;
-      },
-      onEnter: (event) {
-        onHover.value = true;
-      },
-      onExit: (event) {
-        onHover.value = false;
-      },
+      // cursor: SystemMouseCursors.click,
+      // onHover: (event) {
+      //   onHover.value = true;
+      // },
+      // onEnter: (event) {
+      //   onHover.value = true;
+      // },
+      // onExit: (event) {
+      //   onHover.value = false;
+      // },
       child: GestureDetector(
         onTap: onTap,
         child: ValueListenableBuilder(
@@ -1146,7 +1220,7 @@ class MSmallButton extends StatelessWidget {
                             text: title,
                             size: 14,
                             color: value == true ? Colors.black : null,
-                            weight: FontWeight.w600,
+                            weight: FontWeight.w400,
                           ),
                         ),
                         decoration: BoxDecoration(

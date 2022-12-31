@@ -53,6 +53,7 @@ dependencies:
   another_flushbar: ^1.12.29
 #  zoom_widget: ^2.0.0
   reveal_on_scroll: ^0.0.1
+  show_up_animation: ^2.0.0
 
 
 
