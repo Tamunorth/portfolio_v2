@@ -6,7 +6,7 @@ class AppStrings {
   static const githubUrl = 'https://github.com/Tamunorth';
   static const githubReposUrl = 'https://github.com/Tamunorth?tab=repositories';
   static const resumeUrl =
-      'https://drive.google.com/file/d/1MPbqFOcT483U9p2DDbrvVw6lthykp-A9/view?usp=share_link';
+      'https://drive.google.com/file/d/1x30u9Okkth7LvDFpAqD7KhzHROWu-K-c/view?usp=share_link';
   static const mediumLink = 'https://medium.com/@daviesmanueltamunotonye';
   static const linkedInLink = 'https://www.linkedin.com/in/davies-manuel/';
   static const bottomScrollText =

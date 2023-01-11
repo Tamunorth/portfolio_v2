@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:optimized_cached_image/optimized_cached_image.dart';
 import 'package:portfolio_v2/generated/assets.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:portfolio_v2/utils/pallets.dart';
@@ -19,6 +20,148 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../shared/image_widget.dart';
 import '../shared/rotataing_box.dart';
 import '../utils/app_strings.dart';
+
+class TestPage extends StatefulWidget {
+  @override
+  _TestPageState createState() => new _TestPageState();
+}
+
+class _TestPageState extends State<TestPage>
+    with SingleTickerProviderStateMixin {
+  final listViewKey = new GlobalKey();
+  final animatedBoxKey = new GlobalKey();
+
+  final scrollController = new ScrollController();
+
+  bool hasPlayed = false;
+
+  late AnimationController animatedBoxEnterAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animatedBoxEnterAnimationController = new AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 2000),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    scrollController.addListener(() {
+      _updateAnimatedBoxEnterAnimation();
+    });
+  }
+
+  static const enterAnimationMinHeight = 100.0;
+
+  _updateAnimatedBoxEnterAnimation() {
+    if (animatedBoxEnterAnimationController.status !=
+        AnimationStatus.dismissed) {
+      return; // animation already in progress/finished
+    }
+
+    RenderObject? listViewObject =
+        listViewKey.currentContext?.findRenderObject();
+    RenderObject? animatedBoxObject =
+        animatedBoxKey.currentContext?.findRenderObject();
+    if (listViewObject == null || animatedBoxObject == null) return;
+
+    final listViewHeight = listViewObject.paintBounds.height;
+    final animatedObjectTop =
+        animatedBoxObject.getTransformTo(listViewObject).getTranslation().y;
+
+    final RenderBox renderBox =
+        animatedBoxKey.currentContext?.findRenderObject() as RenderBox;
+
+    final Size size = renderBox.size; //// or _widgetKey.currentContext?.size
+
+    final Offset offset = renderBox.localToGlobal(Offset.zero);
+
+    log(scrollController.offset.toString());
+
+    // final asdd =
+    //     "${(offset.dx + size.width) / 2}, ${(offset.dy + size.height) / 2}";
+
+    final animatedBoxVisible =
+        (animatedObjectTop + enterAnimationMinHeight < listViewHeight);
+
+    if (scrollController.offset >= offset.dy) {
+      animatedBoxEnterAnimationController.forward();
+
+      hasPlayed = true;
+    } else {
+      animatedBoxEnterAnimationController.reverse();
+      hasPlayed = false;
+    }
+
+    // if (animatedBoxVisible) {
+    //   animatedBoxEnterAnimationController.forward();
+    // } else {
+    //   animatedBoxEnterAnimationController.reset();
+    // }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final boxOpacity = CurveTween(curve: Curves.easeOut)
+        .animate(animatedBoxEnterAnimationController);
+
+    final boxPosition = Tween(begin: Offset(-1.0, 0.0), end: Offset.zero)
+        .chain(CurveTween(curve: Curves.elasticOut))
+        .animate(animatedBoxEnterAnimationController);
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Flutter Playground'),
+      ),
+      body: new ListView(
+        key: listViewKey,
+        controller: scrollController,
+        children: <Widget>[
+          new Container(
+            padding: EdgeInsets.all(16.0),
+            child: new Text(
+              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam Lorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyLorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+              style: TextStyle(fontSize: 24.0),
+            ),
+          ),
+          new FadeTransition(
+            opacity: boxOpacity,
+            child: new SlideTransition(
+              position: boxPosition,
+              child: new Container(
+                key: animatedBoxKey,
+                height: 300.0,
+                color: Colors.green,
+                padding: EdgeInsets.all(16.0),
+                child: new Text('Animated Box'),
+              ),
+            ),
+          ),
+          new Container(
+            padding: EdgeInsets.all(16.0),
+            child: new Text(
+              'Lorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy Lorem ipsum dolor sit amet, consetetur sadipscing Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore e Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore e elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+              style: TextStyle(fontSize: 24.0),
+            ),
+          ),
+          new TextButton(
+            onPressed: () {
+              // scrollController.jumpTo(0.0);
+
+              animatedBoxEnterAnimationController.reset();
+            },
+            child: new Text('Reset'),
+          )
+        ],
+      ),
+    );
+  }
+}
 
 class MobileBody extends StatelessWidget {
   MobileBody({Key? key}) : super(key: key);
@@ -422,15 +565,15 @@ class MobileBody extends StatelessWidget {
                   // ),
 
                   const ProjectItem(
-                    title: '4traderx',
+                    title: 'Edoko',
                     description:
-                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                    imageLink: AppStrings.tradexImageLink,
-                    overlayColor: 0xff371C00,
+                        "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
+                    imageLink: AppStrings.edokoImageLink,
+                    overlayColor: 0xff222222,
                     playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
+                        'https://play.google.com/store/apps/details?id=com.edako.edako',
                     appStoreLink:
-                        'https://apps.apple.com/us/app/4traderx/id1605193631',
+                        'https://apps.apple.com/ca/app/edoko/id1600923527',
                   ),
                   // ScrollToReveal.withAnimation(
                   //   label: 'ScrollMedbury',
