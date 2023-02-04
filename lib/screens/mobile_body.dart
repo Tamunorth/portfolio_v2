@@ -16,7 +16,6 @@ import 'package:portfolio_v2/utils/validation_helpers.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 import '../shared/image_widget.dart';
 import '../shared/rotataing_box.dart';
@@ -81,7 +80,7 @@ class _MobileBodyState extends State<MobileBody> {
     // TODO: implement initState
     super.initState();
 
-    VisibilityDetectorController.instance.notifyNow();
+    // VisibilityDetectorController.instance.notifyNow();
   }
 
   @override
