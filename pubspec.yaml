@@ -51,9 +51,8 @@ dependencies:
   loader_overlay: ^2.1.0
   in_app_notification: ^1.1.2
   another_flushbar: ^1.12.29
-#  zoom_widget: ^2.0.0
-  reveal_on_scroll: ^0.0.1
-  show_up_animation: ^2.0.0
+  visibility_detector: ^0.3.3
+  flutter_animate: ^3.1.0
 
 
 
