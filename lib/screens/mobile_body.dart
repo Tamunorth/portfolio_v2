@@ -9,19 +9,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:portfolio_v2/generated/assets.dart';
+import 'package:portfolio_v2/shared/mobile_projects_tab.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:portfolio_v2/utils/pallets.dart';
 import 'package:portfolio_v2/utils/validation_helpers.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import '../shared/image_widget.dart';
 import '../shared/rotataing_box.dart';
 import '../utils/app_strings.dart';
 
-class MobileBody extends StatelessWidget {
-  MobileBody({Key? key}) : super(key: key);
+class MobileBody extends StatefulWidget {
+  const MobileBody({Key? key}) : super(key: key);
 
   static final List<String> skills = [
     ' Flutter',
@@ -53,17 +55,34 @@ class MobileBody extends StatelessWidget {
     'Kotlin',
   ];
 
+  @override
+  State<MobileBody> createState() => _MobileBodyState();
+}
+
+class _MobileBodyState extends State<MobileBody> {
   final projectsKey = new GlobalKey();
+
   final aboutMeKey = new GlobalKey();
+
   final formKey = GlobalKey<FormState>();
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final TextEditingController nameCtrl = TextEditingController();
+
   final TextEditingController emailCtrl = TextEditingController();
+
   final TextEditingController messageCtrl = TextEditingController();
-  final ScrollController _scrollController = ScrollController();
 
   bool _isInViewport = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    VisibilityDetectorController.instance.notifyNow();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,52 +90,6 @@ class MobileBody extends StatelessWidget {
       length: 3,
       child: Scaffold(
         key: scaffoldKey,
-        endDrawer: SizedBox(
-          height: 300,
-          child: Drawer(
-            width: 200,
-            child: Container(
-              color: Colors.black,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 60),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextViewMobile(
-                      text: 'Projects',
-                      size: 20,
-                      weight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                    20.verticalSpace,
-                    TextViewMobile(
-                      text: 'Projects',
-                      size: 20,
-                      weight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                    20.verticalSpace,
-                    TextViewMobile(
-                      text: 'Projects',
-                      size: 20,
-                      weight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                    20.verticalSpace,
-                    TextViewMobile(
-                      text: 'Projects',
-                      size: 20,
-                      weight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
         body: InteractiveViewer(
           // alignPanAxis: true,
           // panEnabled: false,
@@ -124,7 +97,6 @@ class MobileBody extends StatelessWidget {
           boundaryMargin: const EdgeInsets.all(0),
           child: LoaderOverlay(
             child: SingleChildScrollView(
-              controller: _scrollController,
               padding: EdgeInsets.symmetric(
                 vertical: 60,
                 horizontal: 24,
@@ -384,107 +356,7 @@ class MobileBody extends StatelessWidget {
                   //
                   // ),
 
-                  // Visibility(
-                  //   visible: _isInViewport,
-                  //   child: AnimatedOpacity(
-                  //     duration: Duration(milliseconds: 500),
-                  //     opacity: _isInViewport ? 1.0 : 0.0,
-                  //     child: Text('Hello World'),
-                  //   ),
-                  // ),
-                  const ProjectItem(
-                    title: 'Titan Xchange',
-                    description:
-                        'TitanXchange provides Seamless borderless payments at your Fingertips allowing you to transcend Borders, by eliminating long bank hours, costly service fees and lengthy processing times.',
-                    imageLink: AppStrings.titanXchangeImageLink,
-                    overlayColor: 0xff00312A,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.titanx_change.www',
-                    appStoreLink:
-                        'https://apps.apple.com/us/app/titanxchange/id6444230222',
-                  ),
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'ScrollEdoko',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: -200,
-                  //   animationType: AnimationType.findInLeft,
-                  //   child: const ProjectItem(
-                  //     title: 'Edoko',
-                  //     description:
-                  //         "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
-                  //     imageLink: AppStrings.edokoImageLink,
-                  //     overlayColor: 0xff222222,
-                  //     playStoreLink:
-                  //         'https://play.google.com/store/apps/details?id=com.edako.edako',
-                  //     appStoreLink:
-                  //         'https://apps.apple.com/ca/app/edoko/id1600923527',
-                  //   ),
-                  // ),
-
-                  const ProjectItem(
-                    title: '4traderx',
-                    description:
-                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                    imageLink: AppStrings.tradexImageLink,
-                    overlayColor: 0xff371C00,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
-                    appStoreLink:
-                        'https://apps.apple.com/us/app/4traderx/id1605193631',
-                  ),
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'ScrollMedbury',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: -200,
-                  //   animationType: AnimationType.findInLeft,
-                  //   child: const ProjectItem(
-                  //     title: 'Medbury',
-                  //     description:
-                  //         'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
-                  //     imageLink: AppStrings.medburyImageLink,
-                  //     overlayColor: 0xff420001,
-                  //     playStoreLink: 'https://bit.ly/medbury_playstore',
-                  //     appStoreLink: 'https://apple.co/3uYrHyh',
-                  //   ),
-                  // ),
-                  const ProjectItem(
-                    title: 'Medbury',
-                    description:
-                        'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
-                    imageLink: AppStrings.medburyImageLink,
-                    overlayColor: 0xff420001,
-                    playStoreLink: 'https://bit.ly/medbury_playstore',
-                    appStoreLink: 'https://apple.co/3uYrHyh',
-                  ),
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'Scroll4traderX',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: -200,
-                  //   animationType: AnimationType.findInLeft,
-                  //   child: const ProjectItem(
-                  //     title: '4traderx',
-                  //     description:
-                  //         '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                  //     imageLink: AppStrings.tradexImageLink,
-                  //     overlayColor: 0xff371C00,
-                  //     playStoreLink:
-                  //         'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
-                  //     appStoreLink:
-                  //         'https://apps.apple.com/us/app/4traderx/id1605193631',
-                  //   ),
-                  // ),
-
-                  const ProjectItem(
-                    title: '4traderx',
-                    description:
-                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                    imageLink: AppStrings.tradexImageLink,
-                    overlayColor: 0xff371C00,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
-                    appStoreLink:
-                        'https://apps.apple.com/us/app/4traderx/id1605193631',
-                  ),
+                  const ProjectsTab(),
 
                   30.verticalSpace,
                   Row(
@@ -575,9 +447,9 @@ class MobileBody extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: List.generate(
-                                  skills.length,
+                                  MobileBody.skills.length,
                                   (index) => TextViewMobileAlt(
-                                        text: skills[index].trim(),
+                                        text: MobileBody.skills[index].trim(),
                                         size: 14,
                                         weight: FontWeight.w400,
                                       )),
@@ -587,9 +459,10 @@ class MobileBody extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: List.generate(
-                                    skills2.length,
+                                    MobileBody.skills2.length,
                                     (index) => TextViewMobileAlt(
-                                          text: skills2[index].trim(),
+                                          text:
+                                              MobileBody.skills2[index].trim(),
                                           size: 14,
                                           weight: FontWeight.w400,
                                         )),
@@ -899,98 +772,6 @@ class MobileBody extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ProjectItem extends StatelessWidget {
-  const ProjectItem({
-    Key? key,
-    required this.imageLink,
-    required this.overlayColor,
-    required this.playStoreLink,
-    required this.appStoreLink,
-    this.title,
-    this.description,
-  }) : super(key: key);
-
-  final String imageLink;
-  final String? title;
-  final String? description;
-  final int overlayColor;
-  final String playStoreLink;
-  final String appStoreLink;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 8),
-          color: Colors.black,
-          height: 300.h,
-          width: double.infinity,
-          child: Image.network(
-            imageLink,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Positioned.fill(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 8),
-            color: Color(overlayColor).withOpacity(0.8),
-            height: 40,
-            width: 40,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextViewMobile(
-                  text: title?.toUpperCase() ?? '',
-                  size: 17,
-                  color: Colors.white,
-                ),
-                8.verticalSpace,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextViewMobileAlt(
-                    textAlign: TextAlign.center,
-                    text: description ?? '',
-                    size: 9,
-                    color: Colors.white,
-                  ),
-                ),
-                10.verticalSpace,
-                MOverlayButtonWidget(
-                  title: 'Google Play',
-                  onTap: () {
-                    launchUrlString(playStoreLink);
-                  },
-                  icon: Image.asset(
-                    Assets.pngsGoogle,
-                    width: 10,
-                    height: 10,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                8.verticalSpace,
-                MOverlayButtonWidget(
-                  title: 'App Store',
-                  onTap: () {
-                    launchUrl(Uri.parse(appStoreLink));
-                    // launchUrlString(appStoreLink,
-                    //     mode: LaunchMode.externalApplication);
-                  },
-                  icon: Image.asset(
-                    Assets.pngsApple,
-                    width: 10,
-                    height: 10,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
     );
   }
 }

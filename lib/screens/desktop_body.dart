@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:portfolio_v2/generated/assets.dart';
+import 'package:portfolio_v2/shared/desktop_projects_tab.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:portfolio_v2/utils/pallets.dart';
 import 'package:portfolio_v2/utils/validation_helpers.dart';
@@ -60,7 +61,8 @@ class DesktopBody extends StatelessWidget {
   final TextEditingController nameCtrl = TextEditingController();
   final TextEditingController emailCtrl = TextEditingController();
   final TextEditingController messageCtrl = TextEditingController();
-  final ScrollController _scrollController = ScrollController();
+
+  // final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,6 @@ class DesktopBody extends StatelessWidget {
           boundaryMargin: const EdgeInsets.all(0),
           child: LoaderOverlay(
             child: SingleChildScrollView(
-              controller: _scrollController,
               padding: EdgeInsets.symmetric(
                 vertical: 60.sp,
                 horizontal: 140.w,
@@ -291,25 +292,7 @@ class DesktopBody extends StatelessWidget {
                   150.w.verticalSpace,
                   Divider(),
                   10.w.verticalSpace,
-                  // IgnorePointer(
-                  //   child: TextScroll(
-                  //     AppStrings.bottomScrollText.toUpperCase(),
-                  //     mode: TextScrollMode.endless,
-                  //     velocity: Velocity(pixelsPerSecond: Offset(150, 0)),
-                  //     delayBefore: Duration(milliseconds: 500),
-                  //     numberOfReps: 5,
-                  //     pauseBetween: Duration(milliseconds: 50),
-                  //     style: TextStyle(
-                  //       fontFamily: 'Clash',
-                  //       color: Colors.black,
-                  //       fontWeight: FontWeight.w600,
-                  //       fontSize: 60,
-                  //       height: 1.2,
-                  //     ),
-                  //     textAlign: TextAlign.right,
-                  //     // selectable: true,
-                  //   ),
-                  // ),
+
                   ScrollingText(
                     text: AppStrings.bottomScrollText.toUpperCase(),
                   ),
@@ -327,136 +310,9 @@ class DesktopBody extends StatelessWidget {
                       weight: FontWeight.w700,
                     ),
                   ),
-                  50.w.verticalSpace,
 
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'Scroll',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: 0,
-                  //   animationType: AnimationType.fadeInDown,
-                  //   child: Container(
-                  //     color: Colors.black,
-                  //     height: 800.w,
-                  //     // child: Image.network(
-                  //     //   'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669061368/portfolio_projects/Frame_41_zlz3cn.png',
-                  //     //   fit: BoxFit.cover,
-                  //     // ),
-                  //   ),
-                  // ),
-                  // Container(
-                  //   color: Colors.black,
-                  //   height: 800.w,
-                  //   child: Image.network(
-                  //     'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669061368/portfolio_projects/Frame_41_zlz3cn.png',
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
+                  DesktopProjectsTab(),
 
-                  ProjectItem(
-                    title: 'Titan Xchange',
-                    description:
-                        'TitanXchange provides Seamless borderless payments at your Fingertips allowing you to transcend Borders, by eliminating long bank hours, costly service fees and lengthy processing times.',
-                    imageLink: AppStrings.titanXchangeImageLink,
-                    overlayColor: 0xff00312A,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.titanx_change.www',
-                    appStoreLink:
-                        'https://apps.apple.com/us/app/titanxchange/id6444230222',
-                  ),
-
-                  50.w.verticalSpace,
-                  // Container(
-                  //   color: Colors.black,
-                  //   height: 800.w,
-                  //   child: Image.network(
-                  //     'https://res.cloudinary.com/dxfwzjz4k/image/upload/v1669269273/portfolio_projects/Frame_42_1_dnyh8n.png',
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
-
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'ScrollEdoko',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: 1000,
-                  //   animationType: AnimationType.findInLeft,
-                  //   child: ProjectItem(
-                  //     title: 'Edoko',
-                  //     description:
-                  //         "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
-                  //     imageLink: AppStrings.edokoImageLink,
-                  //     overlayColor: 0xff222222,
-                  //     playStoreLink:
-                  //         'https://play.google.com/store/apps/details?id=com.edako.edako',
-                  //     appStoreLink:
-                  //         'https://apps.apple.com/ca/app/edoko/id1600923527',
-                  //   ),
-                  // ),
-
-                  ProjectItem(
-                    title: 'Edoko',
-                    description:
-                        "Edoko is an E-commerce app that manages the payment and logistics between foreign stores and African consumers without worrying about spending limit or logistics.",
-                    imageLink: AppStrings.edokoImageLink,
-                    overlayColor: 0xff222222,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.edako.edako',
-                    appStoreLink:
-                        'https://apps.apple.com/ca/app/edoko/id1600923527',
-                  ),
-                  50.w.verticalSpace,
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'ScrollMedbury',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: 1500,
-                  //   animationType: AnimationType.findInRight,
-                  //   child: ProjectItem(
-                  //     title: 'Medbury',
-                  //     description:
-                  //         'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
-                  //     imageLink: AppStrings.medburyImageLink,
-                  //     overlayColor: 0xff420001,
-                  //     playStoreLink: 'https://bit.ly/medbury_playstore',
-                  //     appStoreLink: 'https://apple.co/3uYrHyh',
-                  //   ),
-                  // ),
-                  ProjectItem(
-                    title: 'Medbury',
-                    description:
-                        'Medbury Medical Services is the first dedicated Occupational Health, Industrial Hygiene and Medical Solutions Company in Nigeria.',
-                    imageLink: AppStrings.medburyImageLink,
-                    overlayColor: 0xff420001,
-                    playStoreLink: 'https://bit.ly/medbury_playstore',
-                    appStoreLink: 'https://apple.co/3uYrHyh',
-                  ),
-                  50.w.verticalSpace,
-                  ProjectItem(
-                    title: '4traderx',
-                    description:
-                        '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                    imageLink: AppStrings.tradexImageLink,
-                    overlayColor: 0xff371C00,
-                    playStoreLink:
-                        'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
-                    appStoreLink:
-                        'https://apps.apple.com/us/app/4traderx/id1605193631',
-                  ),
-                  // ScrollToReveal.withAnimation(
-                  //   label: 'Scroll4traderX',
-                  //   scrollController: _scrollController,
-                  //   reflectPosition: 2000,
-                  //   animationType: AnimationType.findInLeft,
-                  //   child: ProjectItem(
-                  //     title: '4traderx',
-                  //     description:
-                  //         '4traderx is a currency exchange platform making payments to Africa and currency exchange affordable and seamless.',
-                  //     imageLink: AppStrings.tradexImageLink,
-                  //     overlayColor: 0xff371C00,
-                  //     playStoreLink:
-                  //         'https://play.google.com/store/apps/details?id=com.fourtraderx.app',
-                  //     appStoreLink:
-                  //         'https://apps.apple.com/us/app/4traderx/id1605193631',
-                  //   ),
-                  // ),
                   200.w.verticalSpace,
                   Row(
                     children: [
@@ -1182,122 +1038,6 @@ class _MyCursorState extends State<StatefulWidget> {
       mouseX = event.localPosition.dx;
       mouseY = event.localPosition.dy;
     });
-  }
-}
-
-class ProjectItem extends StatelessWidget {
-  ProjectItem({
-    Key? key,
-    required this.imageLink,
-    required this.overlayColor,
-    required this.playStoreLink,
-    required this.appStoreLink,
-    this.title,
-    this.description,
-  }) : super(key: key);
-
-  final String imageLink;
-  final String? title;
-  final String? description;
-  final int overlayColor;
-  final String playStoreLink;
-  final String appStoreLink;
-  final ValueNotifier<bool> onHover = ValueNotifier(false);
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      onHover: (event) {
-        onHover.value = true;
-      },
-      onEnter: (event) {
-        onHover.value = true;
-      },
-      onExit: (event) {
-        onHover.value = false;
-      },
-      child: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 8),
-            color: Colors.black,
-            height: 800.w,
-            width: double.infinity,
-            child: Image.network(
-              imageLink,
-              fit: BoxFit.cover,
-            ),
-          ),
-          ValueListenableBuilder(
-              valueListenable: onHover,
-              builder: (context, value, child) {
-                if (value) {
-                  return Positioned.fill(
-                    child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
-                      color: Color(overlayColor).withOpacity(0.8),
-                      height: 40,
-                      width: 40,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextViewAlt(
-                            weight: FontWeight.w600,
-                            text: title?.toUpperCase() ?? '',
-                            size: 60,
-                            color: Colors.white,
-                          ),
-                          8.verticalSpace,
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 45.w),
-                            child: TextView(
-                              textAlign: TextAlign.center,
-                              text: description ?? '',
-                              size: 32,
-                              weight: FontWeight.w400,
-                              color: Colors.white,
-                            ),
-                          ),
-                          32.w.verticalSpace,
-                          MOverlayButtonWidget(
-                            title: 'Google Play',
-                            onTap: () {
-                              launchUrlString(playStoreLink);
-                            },
-                            icon: Image.asset(
-                              Assets.pngsGoogle,
-                              width: 24.w,
-                              height: 24.w,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          30.w.verticalSpace,
-                          MOverlayButtonWidget(
-                            title: 'App Store',
-                            onTap: () {
-                              launchUrl(Uri.parse(appStoreLink));
-                              // launchUrlString(appStoreLink,
-                              //     mode: LaunchMode.externalApplication);
-                            },
-                            icon: Image.asset(
-                              Assets.pngsApple,
-                              width: 24.w,
-                              height: 24.w,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                } else {
-                  return SizedBox();
-                }
-              }),
-        ],
-      ),
-    );
   }
 }
 
