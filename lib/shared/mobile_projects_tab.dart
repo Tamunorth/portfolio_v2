@@ -20,9 +20,10 @@ class ProjectsTab extends StatefulWidget {
 }
 
 class _ProjectsTabState extends State<ProjectsTab> {
-  final List<bool> isVisible = [false, false, false, false];
+  // final List<bool> isVisible = [false, false, false, false];
 
-  bool isInViewPort = false;
+  ValueNotifier<List<bool>> isInViewPort =
+      ValueNotifier([false, false, false, false]);
 
   static List<Widget> projects = const [
     ProjectItem(
@@ -75,33 +76,43 @@ class _ProjectsTabState extends State<ProjectsTab> {
           shrinkWrap: true,
           itemCount: projects.length,
           itemBuilder: (context, index) {
-            return RepaintBoundary(
-              child: VisibilityDetector(
-                key: Key('my-$index-key'),
-                onVisibilityChanged: (visibilityInfo) {
-                  var visiblePercentage = visibilityInfo.visibleFraction * 100;
+            return ValueListenableBuilder(
+                valueListenable: isInViewPort,
+                builder: (context, value, child) {
+                  return RepaintBoundary(
+                    child: VisibilityDetector(
+                      key: Key('my-$index-key'),
+                      onVisibilityChanged: (visibilityInfo) {
+                        var visiblePercentage =
+                            visibilityInfo.visibleFraction * 100;
 
-                  if (visiblePercentage > 45) {
-                    setState(() {
-                      isVisible[index] = true;
-                    });
-                  } else {
-                    setState(() {
-                      isVisible[index] = false;
-                    });
-                  }
-                  debugPrint(
-                      'Widget ${visibilityInfo.key} is ${visiblePercentage}% visible');
-                },
-                child: projects[index]
-                    .animate(target: isVisible[index] ? 1 : 0, delay: 100.ms)
-                    .slideX(
-                      duration: 400.ms,
-                    )
-                    .fade()
-                    .shimmer(),
-              ),
-            );
+                        if (visiblePercentage > 45 && visiblePercentage < 101) {
+                          isInViewPort.value[index] = true;
+                          isInViewPort.notifyListeners();
+
+                          // setState(() {
+                          //   isVisible[index] = true;
+                          // });
+                        } else {
+                          isInViewPort.value[index] = false;
+
+                          isInViewPort.notifyListeners();
+
+                          // setState(() {
+                          //   isVisible[index] = false;
+                          // });
+                        }
+                      },
+                      child: projects[index]
+                          .animate(target: value[index] ? 1 : 0, delay: 100.ms)
+                          .slideX(
+                            duration: 400.ms,
+                          )
+                          .fade(),
+                      // .shimmer(),
+                    ),
+                  );
+                });
           })
     ]);
   }
