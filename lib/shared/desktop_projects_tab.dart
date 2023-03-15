@@ -61,42 +61,52 @@ class DesktopProjectsTab extends StatefulWidget {
 }
 
 class _DesktopProjectsTabState extends State<DesktopProjectsTab> {
-  final List<bool> isVisible = [false, false, false, false];
+  ValueNotifier<List<bool>> isInViewPort =
+      ValueNotifier([false, false, false, false]);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: DesktopProjectsTab.projects.length,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return RepaintBoundary(
-            child: VisibilityDetector(
-              key: Key('my-$index-key'),
-              onVisibilityChanged: (visibilityInfo) {
-                var visiblePercentage = visibilityInfo.visibleFraction * 100;
+          return ValueListenableBuilder(
+              valueListenable: isInViewPort,
+              builder: (context, value, child) {
+                return RepaintBoundary(
+                  child: VisibilityDetector(
+                    key: Key('my-$index-key'),
+                    onVisibilityChanged: (visibilityInfo) {
+                      var visiblePercentage =
+                          visibilityInfo.visibleFraction * 100;
+                      if (visiblePercentage > 45 && visiblePercentage < 101) {
+                        isInViewPort.value[index] = true;
+                        isInViewPort.notifyListeners();
 
-                if (visiblePercentage > 45) {
-                  setState(() {
-                    isVisible[index] = true;
-                  });
-                } else {
-                  setState(() {
-                    isVisible[index] = false;
-                  });
-                }
-                debugPrint(
-                    'Widget ${visibilityInfo.key} is ${visiblePercentage}% visible');
-              },
-              child: DesktopProjectsTab.projects[index]
-                  .animate(target: isVisible[index] ? 1 : 0, delay: 100.ms)
-                  .slideX(
-                    duration: 400.ms,
-                  )
-                  .fade()
-                  .shimmer(),
-            ),
-          );
+                        // setState(() {
+                        //   isVisible[index] = true;
+                        // });
+                      } else {
+                        isInViewPort.value[index] = false;
+
+                        isInViewPort.notifyListeners();
+
+                        // setState(() {
+                        //   isVisible[index] = false;
+                        // });
+                      }
+                    },
+                    child: DesktopProjectsTab.projects[index]
+                        .animate(target: value[index] ? 1 : 0, delay: 100.ms)
+                        .slideX(
+                          duration: 400.ms,
+                        )
+                        .fade(),
+                    // .shimmer(),
+                  ),
+                );
+              });
         });
   }
 }
@@ -134,6 +144,7 @@ class ProjectItem extends StatelessWidget {
         onHover.value = false;
       },
       child: Stack(
+        clipBehavior: Clip.hardEdge,
         children: [
           Container(
             margin: EdgeInsets.symmetric(vertical: 50.w),
@@ -151,7 +162,7 @@ class ProjectItem extends StatelessWidget {
                 if (value) {
                   return Positioned.fill(
                     child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
+                      margin: EdgeInsets.symmetric(vertical: 50.w),
                       color: Color(overlayColor).withOpacity(0.8),
                       height: 40,
                       width: 40,

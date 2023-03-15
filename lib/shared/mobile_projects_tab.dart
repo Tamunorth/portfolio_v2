@@ -86,7 +86,7 @@ class _ProjectsTabState extends State<ProjectsTab> {
                         var visiblePercentage =
                             visibilityInfo.visibleFraction * 100;
 
-                        if (visiblePercentage > 45) {
+                        if (visiblePercentage > 45 && visiblePercentage < 101) {
                           isInViewPort.value[index] = true;
                           isInViewPort.notifyListeners();
 
@@ -102,16 +102,14 @@ class _ProjectsTabState extends State<ProjectsTab> {
                           //   isVisible[index] = false;
                           // });
                         }
-                        debugPrint(
-                            'Widget ${visibilityInfo.key} is ${visiblePercentage}% visible');
                       },
                       child: projects[index]
                           .animate(target: value[index] ? 1 : 0, delay: 100.ms)
                           .slideX(
                             duration: 400.ms,
                           )
-                          .fade()
-                          .shimmer(),
+                          .fade(),
+                      // .shimmer(),
                     ),
                   );
                 });
