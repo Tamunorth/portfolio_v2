@@ -52,6 +52,7 @@ dependencies:
   another_flushbar: ^1.12.29
   visibility_detector: ^0.4.0+2
   flutter_animate: ^4.1.0
+  animated_text_kit: ^4.2.2
 
 
 
