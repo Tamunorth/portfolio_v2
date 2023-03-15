@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:emailjs/emailjs.dart';
 import 'package:flutter/gestures.dart';
@@ -54,6 +53,17 @@ class DesktopBody extends StatelessWidget {
     'Kotlin',
   ];
 
+  static const colorizeColors = [
+    Colors.purple,
+    Colors.blue,
+    Colors.yellow,
+    Colors.red,
+  ];
+
+  static const colorizeTextStyle = TextStyle(
+    fontSize: 16.0,
+    fontFamily: 'Horizon',
+  );
   final projectsKey = new GlobalKey();
   final aboutMeKey = new GlobalKey();
   final formKey = GlobalKey<FormState>();
@@ -661,12 +671,25 @@ class DesktopBody extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextView(
-                        text: '© Tamunorth 2022',
-                        color: Pallets.grey,
-                        size: 20,
-                        weight: FontWeight.w400,
+                      AnimatedTextKit(
+                        animatedTexts: [
+                          ColorizeAnimatedText(
+                            '© Tamunorth 2022',
+                            textStyle: colorizeTextStyle,
+                            colors: colorizeColors,
+                          ),
+                        ],
+                        isRepeatingAnimation: true,
+                        onTap: () {
+                          print("Tap Event");
+                        },
                       ),
+                      // TextView(
+                      //   text: '© Tamunorth 2022',
+                      //   color: Pallets.grey,
+                      //   size: 20,
+                      //   weight: FontWeight.w400,
+                      // ),
                       Row(
                         children: [
                           SizedBox(
@@ -1113,15 +1136,19 @@ class MOverlayButtonWidget extends StatelessWidget {
                             Text(
                               title,
                               style: TextStyle(
-                                  fontSize: 26.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
+                                fontSize: 26.sp,
+                                fontWeight: FontWeight.w500,
+                                color:
+                                    value == true ? Colors.black : Colors.white,
+                              ),
                             )
                           ],
                         ),
                         decoration: BoxDecoration(
                           color: value == true ? Color(0xffFFC163) : null,
-                          border: Border.all(color: Colors.white),
+                          border: Border.all(
+                              color:
+                                  value == true ? Colors.black : Colors.white),
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),

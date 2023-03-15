@@ -98,7 +98,7 @@ class _DesktopProjectsTabState extends State<DesktopProjectsTab> {
                       }
                     },
                     child: DesktopProjectsTab.projects[index]
-                        .animate(target: value[index] ? 1 : 0, delay: 100.ms)
+                        .animate(target: value[index] ? 1 : 0)
                         .slideX(
                           duration: 400.ms,
                         )
