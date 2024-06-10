@@ -176,18 +176,18 @@ class _MobileBodyState extends State<MobileBody> {
                                 );
                               },
                             ),
-                            // PopupMenuItem(
-                            //   child: TextViewMobile(
-                            //     text: 'Others (Streaming)',
-                            //     color: Colors.white,
-                            //     size: 15,
-                            //     // color: value == true ? Pallets.yellow : null,
-                            //     weight: FontWeight.w600,
-                            //   ),
-                            //   onTap: () {
-                            //     context.go('/stream');
-                            //   },
-                            // ),
+                            PopupMenuItem(
+                              child: TextViewMobile(
+                                text: 'Others (Streaming)',
+                                color: Colors.white,
+                                size: 15,
+                                // color: value == true ? Pallets.yellow : null,
+                                weight: FontWeight.w600,
+                              ),
+                              onTap: () {
+                                context.go('/stream');
+                              },
+                            ),
                           ],
                           onSelected: (value) {},
                           child: SvgPicture.asset(
