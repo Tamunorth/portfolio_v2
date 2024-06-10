@@ -6,9 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:mux_player/mux_player.dart';
 import 'package:portfolio_v2/generated/assets.dart';
+import 'package:portfolio_v2/screens/streaming_page.dart';
 import 'package:portfolio_v2/shared/mobile_projects_tab.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:portfolio_v2/utils/pallets.dart';
@@ -96,7 +99,7 @@ class _MobileBodyState extends State<MobileBody> {
           boundaryMargin: const EdgeInsets.all(0),
           child: LoaderOverlay(
             child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 60,
                 horizontal: 24,
               ),
@@ -115,7 +118,7 @@ class _MobileBodyState extends State<MobileBody> {
                         },
                         child: PopupMenuButton<String>(
                           color: Colors.black,
-                          offset: Offset(0, 20),
+                          offset: const Offset(0, 20),
                           itemBuilder: (BuildContext context) => [
                             PopupMenuItem(
                               child: TextViewMobile(
@@ -173,6 +176,18 @@ class _MobileBodyState extends State<MobileBody> {
                                 );
                               },
                             ),
+                            // PopupMenuItem(
+                            //   child: TextViewMobile(
+                            //     text: 'Others (Streaming)',
+                            //     color: Colors.white,
+                            //     size: 15,
+                            //     // color: value == true ? Pallets.yellow : null,
+                            //     weight: FontWeight.w600,
+                            //   ),
+                            //   onTap: () {
+                            //     context.go('/stream');
+                            //   },
+                            // ),
                           ],
                           onSelected: (value) {},
                           child: SvgPicture.asset(
@@ -199,7 +214,7 @@ class _MobileBodyState extends State<MobileBody> {
                           ),
                           50.w.horizontalSpace,
                           Container(
-                            margin: EdgeInsets.only(bottom: 16),
+                            margin: const EdgeInsets.only(bottom: 16),
                             height: 95.w,
                             width: 340.w,
                             decoration: BoxDecoration(
@@ -251,7 +266,7 @@ class _MobileBodyState extends State<MobileBody> {
                         child: TextViewMobileAlt(
                           text: AppStrings.description,
                           size: 14,
-                          color: Color(0xff565656),
+                          color: const Color(0xff565656),
                           weight: FontWeight.w400,
                         ),
                       ),
@@ -303,7 +318,7 @@ class _MobileBodyState extends State<MobileBody> {
                     ],
                   ),
                   53.verticalSpace,
-                  Divider(
+                  const Divider(
                     color: Colors.black,
                   ),
                   10.verticalSpace,
@@ -312,7 +327,7 @@ class _MobileBodyState extends State<MobileBody> {
                     text: AppStrings.bottomScrollText.toUpperCase(),
                   ),
                   10.verticalSpace,
-                  Divider(
+                  const Divider(
                     color: Colors.black,
                   ),
                   40.verticalSpace,
@@ -475,28 +490,28 @@ class _MobileBodyState extends State<MobileBody> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title:
                                   '4traderX Inc. | Mobile Application Developer:',
                               date:
                                   'Part-Time Nov 2021 - Present; (Delaware, United States of America) ',
                             ),
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title:
                                   'Titanxchange Corp. | Lead Mobile Engineer',
                               date:
                                   'Part-Time July 2022 - Present; (Toronto,  Canada)',
                             ),
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title:
                                   'DFC Technology Hub (DTH) | Lead Mobile Developer',
                               date:
                                   'Jan 2021 - July 2022 / Hybrid (Abuja, Nigeria)',
                             ),
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title: 'MyNeighbours Kitchen | Mobile Developer',
                               date:
                                   'April 2020 - November 2020 / (Remote, Contract)',
@@ -509,19 +524,19 @@ class _MobileBodyState extends State<MobileBody> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title:
                                   'THE COMPLETE 2021 FLUTTER DEVELOPMENT BOOTCAMP WITH DART',
                               date: ' BY LONDONAPPBREWERY UDEMY (2019)',
                             ),
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title:
                                   'SOFTWARE ARCHITECTURE: PATTERNS FOR DEVELOPERS',
                               date: 'LINKEDIN (2022)',
                             ),
                             60.w.verticalSpace,
-                            ExperienceTile(
+                            const ExperienceTile(
                               title: 'BS.c MECHANICAL ENGINEERING',
                               date: 'LANDMARK UNIVERSITY (2015 - 2020)',
                             ),
@@ -539,7 +554,7 @@ class _MobileBodyState extends State<MobileBody> {
                   ),
                   80.w.verticalSpace,
 
-                  Divider(
+                  const Divider(
                     color: Colors.black,
                   ),
                   // IgnorePointer(
@@ -562,7 +577,7 @@ class _MobileBodyState extends State<MobileBody> {
                   ScrollingText(
                     text: AppStrings.lookingForward.toUpperCase(),
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.black,
                   ),
 
@@ -646,7 +661,7 @@ class _MobileBodyState extends State<MobileBody> {
                                             size: 28.0,
                                             color: Colors.blue[300],
                                           ),
-                                          margin: EdgeInsets.all(6.0),
+                                          margin: const EdgeInsets.all(6.0),
                                           flushbarStyle: FlushbarStyle.FLOATING,
                                           flushbarPosition:
                                               FlushbarPosition.TOP,
@@ -669,7 +684,7 @@ class _MobileBodyState extends State<MobileBody> {
                                             size: 28.0,
                                             color: Colors.red[300],
                                           ),
-                                          margin: EdgeInsets.all(6.0),
+                                          margin: const EdgeInsets.all(6.0),
                                           flushbarStyle: FlushbarStyle.FLOATING,
                                           flushbarPosition:
                                               FlushbarPosition.TOP,
@@ -815,7 +830,7 @@ class MButtonWidget extends StatelessWidget {
                           MaterialStateProperty.all(Colors.transparent),
                       child: Container(
                         // height: 30,
-                        padding: EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
                         child: TextView(
                           text: title,
                           size: 18,
@@ -846,13 +861,13 @@ class MButtonWidget extends StatelessWidget {
                             20.horizontalSpace,
                             Text(
                               title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 10, fontWeight: FontWeight.w500),
                             )
                           ],
                         ),
                         decoration: BoxDecoration(
-                          color: value == true ? Color(0xffFFC163) : null,
+                          color: value == true ? const Color(0xffFFC163) : null,
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -904,7 +919,7 @@ class MOverlayButtonWidget extends StatelessWidget {
                           MaterialStateProperty.all(Colors.transparent),
                       child: Container(
                         // height: 30,
-                        padding: EdgeInsets.symmetric(vertical: 20),
+                        padding: const EdgeInsets.symmetric(vertical: 20),
                         child: TextView(
                           text: title,
                           size: 18,
@@ -935,7 +950,7 @@ class MOverlayButtonWidget extends StatelessWidget {
                             20.horizontalSpace,
                             Text(
                               title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 8,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white),
@@ -943,7 +958,7 @@ class MOverlayButtonWidget extends StatelessWidget {
                           ],
                         ),
                         decoration: BoxDecoration(
-                          color: value == true ? Color(0xffFFC163) : null,
+                          color: value == true ? const Color(0xffFFC163) : null,
                           border: Border.all(color: Colors.white),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -1004,7 +1019,7 @@ class MSmallButton extends StatelessWidget {
                           ),
                         ),
                         decoration: BoxDecoration(
-                          color: value == true ? Color(0xffFFC163) : null,
+                          color: value == true ? const Color(0xffFFC163) : null,
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -1024,8 +1039,9 @@ class MSmallButton extends StatelessWidget {
                           ),
                         ),
                         decoration: BoxDecoration(
-                          color:
-                              value == true ? Color(0xffFFC163) : Colors.black,
+                          color: value == true
+                              ? const Color(0xffFFC163)
+                              : Colors.black,
                           border: Border.all(color: Colors.black),
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -1058,13 +1074,13 @@ class ScrollingText extends StatelessWidget {
       //required
       scrollDirection: Axis.horizontal,
       //required
-      delay: Duration(seconds: 1),
-      duration: Duration(seconds: 50),
+      delay: const Duration(seconds: 1),
+      duration: const Duration(seconds: 50),
       gap: 25,
       reverseScroll: false,
       duplicateChild: 5,
       enableScrollInput: true,
-      delayAfterScrollInput: Duration(seconds: 1),
+      delayAfterScrollInput: const Duration(seconds: 1),
     );
   }
 }
@@ -1118,17 +1134,17 @@ class TextBox extends StatelessWidget {
     return TextFormField(
       controller: ctrl,
       maxLines: maxLines,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w300,
       ),
-      scrollPadding: EdgeInsets.symmetric(horizontal: 10),
+      scrollPadding: const EdgeInsets.symmetric(horizontal: 10),
       validator: validator,
       decoration: InputDecoration(
         // isCollapsed: true,
         isDense: true,
         hintText: hint,
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Pallets.grey,
           ),

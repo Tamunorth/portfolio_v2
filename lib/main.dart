@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:in_app_notification/in_app_notification.dart';
 import 'package:portfolio_v2/screens/dashboard.dart';
+import 'package:portfolio_v2/screens/streaming_page.dart';
 import 'package:portfolio_v2/shared/text_view.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -10,6 +12,25 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
+
+/// The route configuration.
+final GoRouter _router = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const DashboardScreen();
+      },
+      // routes: <RouteBase>[],
+    ),
+    GoRoute(
+      path: '/stream',
+      builder: (BuildContext context, GoRouterState state) {
+        return const StreamingPage();
+      },
+    ),
+  ],
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,35 +42,17 @@ class MyApp extends StatelessWidget {
       designSize: const Size(1440, 877),
       builder: (context, child) {
         return InAppNotification(
-          child: MaterialApp(
+          child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            title: 'Tamunnorth Portfolio',
+            title: 'Tamunorth Portfolio',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const DashboardScreen(),
+            routerConfig: _router,
+            // home: const DashboardScreen(),
           ),
         );
       },
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Center(
-          child: TextViewAlt(
-            text: 'JAmes ',
-            size: 300,
-            // fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
     );
   }
 }

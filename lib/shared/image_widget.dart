@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:optimized_cached_image/optimized_cached_image.dart';
+// import 'package:optimized_cached_image/optimized_cached_image.dart';
 
 class ImageWidget extends StatefulWidget {
   final double height;
@@ -60,30 +60,16 @@ class _ImageWidgetState extends State<ImageWidget> {
                 : null,
       ),
       child: widget.imageType == ImageWidgetType.network
-          ? OptimizedCacheImage(
-              memCacheWidth: 100,
-              memCacheHeight: 100,
-              maxHeightDiskCache: 1000,
-              maxWidthDiskCache: 1000,
-              imageUrl: widget.imageUrl,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: widget.borderRadius,
-                  shape: widget.shape ?? BoxShape.rectangle,
-                  border: widget.border,
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
+          ? Container(
+              decoration: BoxDecoration(
+                borderRadius: widget.borderRadius,
+                shape: widget.shape ?? BoxShape.rectangle,
+                border: widget.border,
+                image: DecorationImage(
+                  image: NetworkImage(widget.imageUrl),
+                  fit: BoxFit.cover,
                 ),
               ),
-              placeholder: (context, url) => const SizedBox(),
-              errorWidget: (context, url, error) {
-                return const Icon(
-                  Icons.downloading,
-                  size: 40,
-                );
-              },
             )
           : null,
     );
